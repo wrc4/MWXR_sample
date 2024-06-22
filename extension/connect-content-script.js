@@ -5,11 +5,8 @@ const dispatchCustomEvent = (type, detail) => {
 };
 
 window.addEventListener('message', function(event) {
-  // Assuming you trust the sender
-  // console.log('111 Received message:', event.data);
-  // console.dir(event);
   if (event.data.type == 'MWXR') {
-    console.log('Received pose:', event.data.q);
+    // console.log('Received pose:', event.data.q);
     dispatchCustomEvent('webxr-pose', {
       position: [0, 1.6, 0],
       quaternion: [event.data.q.x, event.data.q.y, event.data.q.z, event.data.q.w]
@@ -18,32 +15,14 @@ window.addEventListener('message', function(event) {
 });
 
 // Set up listeners for events coming from EmulatedXRDevice.
-
 window.addEventListener('device-pose', event => {
-  // port.postMessage({
-  //   action: 'device-pose',
-  //   position: event.detail.position,
-  //   quaternion: event.detail.quaternion
-  // });
 }, false);
 
 window.addEventListener('device-input-pose', event => {
-  // port.postMessage({
-  //   action: 'device-input-pose',
-  //   objectName: event.detail.objectName,
-  //   position: event.detail.position,
-  //   quaternion: event.detail.quaternion
-  // });
 }, false);
 
 window.addEventListener('device-enter-immersive', event => {
 	console.log('device-enter-immersive');
-  // Test with a custom pose
-	//dispatchCustomEvent('webxr-pose', {
-  //    position: [0, 1.6, 0],
-  //    quaternion: [0.1, 1, 0, 1]
-  //  });
-
   // port.postMessage({
   //   action: 'device-enter-immersive'
   // });
@@ -68,7 +47,6 @@ window.addEventListener('device-leave-immersive', event => {
 //     });
 //   });
 // }, false);
-
 
 // function to load script in a web page
 
